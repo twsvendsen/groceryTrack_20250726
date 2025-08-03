@@ -8,6 +8,7 @@ public class SampleDao {
         // map input and validate receipt was scanned correctly
         // mapping includes generation of uniqueIds for GroceryItems
         // store Commodity timesPurchased
+        // This method might need to move to service
     }
 
 }
