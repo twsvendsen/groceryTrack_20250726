@@ -7,6 +7,6 @@ import java.util.List;
 @Data
 public class Receipt {
 
-    List<GroceryItem> groceryItems;
-    Double totalCost;
+    private List<GroceryItem> groceryItems;
+    private Double totalCost;
 }

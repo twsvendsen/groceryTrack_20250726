@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class Commodity {
-    String itemName;
-    String brand;
-    Integer timesPurchased;
+    private String itemName;
+    private String brand;
+    private Integer timesPurchased;
 }

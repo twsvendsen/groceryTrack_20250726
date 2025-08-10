@@ -4,6 +4,6 @@ import lombok.Data;
 
 @Data
 public class StoreLocation {
-    String storeName;
-    String address;
+    private String storeName;
+    private String address;
 }

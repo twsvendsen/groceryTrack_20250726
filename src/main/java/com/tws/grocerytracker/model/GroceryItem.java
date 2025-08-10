@@ -6,9 +6,9 @@ import java.time.OffsetDateTime;
 
 @Data
 public class GroceryItem {
-    Integer uniqueId;
-    Commodity commodity;
-    Double costAtPurchase;
-    OffsetDateTime timeOfPurchase;
-    StoreLocation locationOfPurchase;
+    private Integer uniqueId;
+    private Commodity commodity;
+    private Double costAtPurchase;
+    private OffsetDateTime timeOfPurchase;
+    private StoreLocation locationOfPurchase;
 }
