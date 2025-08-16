@@ -9,6 +9,12 @@ public class SampleDao {
         // mapping includes generation of uniqueIds for GroceryItems
         // store Commodity timesPurchased
         // This method might need to move to service
+
+        try {
+
+        } catch(RuntimeException ex) {
+            
+        }
     }
 
 }

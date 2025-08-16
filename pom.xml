@@ -12,57 +12,78 @@
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <aws.java.sdk.version>2.32.21</aws.java.sdk.version>
+        <aws.java.sdk.version>2.32.23</aws.java.sdk.version>
         <aws.lambda.java.version>1.12.788</aws.lambda.java.version>
         <aws.dynamodb-enhanced.java.version>2.32.23</aws.dynamodb-enhanced.java.version>
-        <aws.url-connection-client.java.version>2.32.20</aws.url-connection-client.java.version>
+        <aws.url-connection-client.java.version>2.32.23</aws.url-connection-client.java.version>
     </properties>
 
     <dependencies>
+
+        <!-- organization -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>1.18.38</version>
             <scope>provided</scope>
         </dependency>
+
+        <!-- testing -->
         <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-testng</artifactId>
             <version>7.27.0</version>
         </dependency>
 
+        <!-- AWS SDK -->
+<!--        <dependency>-->
+<!--            <groupId>software.amazon.awssdk</groupId>-->
+<!--            <artifactId>bom</artifactId>-->
+<!--            <version>${aws.java.sdk.version}</version>-->
+<!--            <exclusions>-->
+<!--                <exclusion>-->
+<!--                    <groupId>software.amazon.awssdk</groupId>-->
+<!--                    <artifactId>netty-nio-client</artifactId>-->
+<!--                </exclusion>-->
+<!--                <exclusion>-->
+<!--                    <groupId>software.amazon.awssdk</groupId>-->
+<!--                    <artifactId>apache-client</artifactId>-->
+<!--                </exclusion>-->
+<!--            </exclusions>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>software.amazon.awssdk</groupId>
-            <artifactId>s3</artifactId>
+            <artifactId>bom</artifactId>
             <version>${aws.java.sdk.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>software.amazon.awssdk</groupId>
-                    <artifactId>netty-nio-client</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>software.amazon.awssdk</groupId>
-                    <artifactId>apache-client</artifactId>
-                </exclusion>
-            </exclusions>
+            <type>pom</type>
+            <scope>runtime</scope>
         </dependency>
-
         <dependency>
             <groupId>software.amazon.awssdk</groupId>
             <artifactId>url-connection-client</artifactId>
             <version>${aws.url-connection-client.java.version}</version>
         </dependency>
-
         <dependency>
             <groupId>com.amazonaws</groupId>
             <artifactId>aws-java-sdk-lambda</artifactId>
             <version>${aws.lambda.java.version}</version>
         </dependency>
-
         <dependency>
             <groupId>software.amazon.awssdk</groupId>
             <artifactId>dynamodb-enhanced</artifactId>
-            <version>${aws.dynamodb-enhanced.java.version}</version>
+            <version>${aws.dynamodb-enhanced.java.version}</version> <!-- Use the latest stable version -->
+        </dependency>
+
+        <!-- log4j -->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>2.3.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>2.3.2</version>
         </dependency>
     </dependencies>
 
