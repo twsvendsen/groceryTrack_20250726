@@ -2,7 +2,7 @@ package com.tws.grocerytracker.dao;
 
 import com.tws.grocerytracker.model.Receipt;
 
-public class SampleDao {
+public class ReceiptDao {
 
     public void catalogueReceipt(Receipt receipt) {
         // map input and validate receipt was scanned correctly
@@ -13,7 +13,7 @@ public class SampleDao {
         try {
 
         } catch(RuntimeException ex) {
-            
+
         }
     }
 

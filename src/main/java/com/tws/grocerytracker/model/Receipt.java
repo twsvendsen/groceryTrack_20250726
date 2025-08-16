@@ -18,7 +18,7 @@ public class Receipt {
     private List<GroceryItem> groceryItems;
     private BigDecimal totalCost;
 
-    private Receipt(Builder builder) {
+    public Receipt(Builder builder) {
         this.id = builder.id;
         this.dateTime = builder.dateTime;
         this.groceryItems = builder.groceryItems;
@@ -39,7 +39,7 @@ public class Receipt {
         private OffsetDateTime dateTime;
         private List<GroceryItem> groceryItems;
         private BigDecimal totalCost;
-        private Builder(){}
+        public Builder(){}
 
         public Builder id(Integer id) { this.id = id; return this; }
         public Builder dateTime(OffsetDateTime dateTime) { this.dateTime = dateTime; return this; }
