@@ -60,6 +60,11 @@
         </dependency>
         <dependency>
             <groupId>software.amazon.awssdk</groupId>
+            <artifactId>sso</artifactId>
+            <version>${aws.java.sdk.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>software.amazon.awssdk</groupId>
             <artifactId>url-connection-client</artifactId>
             <version>${aws.url-connection-client.java.version}</version>
         </dependency>
@@ -71,7 +76,7 @@
         <dependency>
             <groupId>software.amazon.awssdk</groupId>
             <artifactId>dynamodb-enhanced</artifactId>
-            <version>${aws.dynamodb-enhanced.java.version}</version> <!-- Use the latest stable version -->
+            <version>${aws.dynamodb-enhanced.java.version}</version>
         </dependency>
 
         <!-- log4j -->
