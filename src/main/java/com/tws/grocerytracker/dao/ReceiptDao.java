@@ -38,34 +38,34 @@ public class ReceiptDao {
         String partitionKey = "id";
         String sortKey = "transactionDateTime";
 
-        CreateTableRequest request = CreateTableRequest.builder()
-                .attributeDefinitions(
-                        AttributeDefinition.builder()
-                                .attributeName(partitionKey)
-                                .attributeType(ScalarAttributeType.S) // S for String, N for Number, B for Binary
-                                .build())
-                .keySchema(
-                        KeySchemaElement.builder()
-                                .attributeName(partitionKey)
-                                .keyType(KeyType.HASH) // HASH for partition key
-                                .build())
-                .attributeDefinitions(
-                        AttributeDefinition.builder()
-                                .attributeName(sortKey)
-                                .attributeType(ScalarAttributeType.S) // S for String, N for Number, B for Binary
-                                .build())
-                .keySchema(
-                        KeySchemaElement.builder()
-                                .attributeName(partitionKey)
-                                .keyType(KeyType.RANGE) // HASH for partition key
-                                .build())
-                .provisionedThroughput(
-                        ProvisionedThroughput.builder()
-                                .readCapacityUnits(5L)
-                                .writeCapacityUnits(5L)
-                                .build())
-                .tableName(tableName)
-                .build();
+//        CreateTableRequest request = CreateTableRequest.builder()
+//                .attributeDefinitions(
+//                        AttributeDefinition.builder()
+//                                .attributeName(partitionKey)
+//                                .attributeType(ScalarAttributeType.S) // S for String, N for Number, B for Binary
+//                                .build())
+//                .keySchema(
+//                        KeySchemaElement.builder()
+//                                .attributeName(partitionKey)
+//                                .keyType(KeyType.HASH) // HASH for partition key
+//                                .build())
+//                .attributeDefinitions(
+//                        AttributeDefinition.builder()
+//                                .attributeName(sortKey)
+//                                .attributeType(ScalarAttributeType.S) // S for String, N for Number, B for Binary
+//                                .build())
+//                .keySchema(
+//                        KeySchemaElement.builder()
+//                                .attributeName(partitionKey)
+//                                .keyType(KeyType.RANGE) // HASH for partition key
+//                                .build())
+//                .provisionedThroughput(
+//                        ProvisionedThroughput.builder()
+//                                .readCapacityUnits(5L)
+//                                .writeCapacityUnits(5L)
+//                                .build())
+//                .tableName(tableName)
+//                .build();
 
         receiptTable.createTable();
 
