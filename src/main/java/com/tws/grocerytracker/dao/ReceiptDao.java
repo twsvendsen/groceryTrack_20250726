@@ -30,13 +30,13 @@ public class ReceiptDao {
         // mapping includes generation of uniqueIds for GroceryItems
         // store Commodity timesPurchased
         // This method might need to move to service
-        DynamoDbTable<Receipt> receiptTable = enhancedClient.table("Receipt", TableSchema.fromBean(Receipt.class));
+        DynamoDbTable<Receipt> receiptTable = enhancedClient.table("GroceryTrackReceipt", TableSchema.fromBean(Receipt.class));
 
         // TEMP
 
-        String tableName = "GroceryTrackReceipt";
-        String partitionKey = "id";
-        String sortKey = "transactionDateTime";
+//        String tableName = "GroceryTrackReceipt";
+//        String partitionKey = "id";
+//        String sortKey = "transactionDateTime";
 
 //        CreateTableRequest request = CreateTableRequest.builder()
 //                .attributeDefinitions(
@@ -67,7 +67,7 @@ public class ReceiptDao {
 //                .tableName(tableName)
 //                .build();
 
-        receiptTable.createTable();
+//        receiptTable.createTable();
 
         try {
             receiptTable.putItem(receipt);
