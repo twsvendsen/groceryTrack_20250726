@@ -10,9 +10,10 @@ import java.time.OffsetDateTime;
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
+        System.out.println("main thread initiating");
         Receipt receipt = new Receipt.Builder().id(1).transactionDateTime(OffsetDateTime.now()).totalCost(new BigDecimal(5)).build();
         ReceiptDao dao = new ReceiptDao();
         dao.catalogueReceipt(receipt);
-        System.out.println(receipt.getId());
+        System.out.println("main thread concluding");
     }
 }

@@ -1,0 +1,24 @@
+#
+#
+#/whatever/receiptstuff
+#  parameters:
+#      - $ref: '#/components/parameters/Locale'
+#  post:
+#      tags:
+#        - thing
+#      summary: |
+#        Create and save a receipt object
+#      description: |
+#        TODO
+#      operationId: createReceipt
+#      requestBody:
+#        required: false
+#        content:
+#          application/json:
+#            schema:
+#              $ref: '#/components/schemas/TODO'
+#      responses:
+#          '201':
+#            description: success
+#          '500':
+#            description: internal server error

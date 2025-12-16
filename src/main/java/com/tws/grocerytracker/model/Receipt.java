@@ -16,7 +16,8 @@ import java.util.List;
 @DynamoDbBean
 public class Receipt {
     private Integer id;
-    private OffsetDateTime dateTime;
+    private OffsetDateTime recordCreationDateTime;
+    private OffsetDateTime transactionDateTime;
     private List<GroceryItem> groceryItems;
     private BigDecimal totalCost;
 
@@ -24,9 +25,10 @@ public class Receipt {
 
     public Receipt(Builder builder) {
         this.id = builder.id;
-        this.dateTime = builder.transactionDateTime;
+        this.transactionDateTime = builder.transactionDateTime;
         this.groceryItems = builder.groceryItems;
         this.totalCost = builder.totalCost;
+        this.recordCreationDateTime = OffsetDateTime.now();
     }
 
     public static Builder builder(){ return new Builder(); }
@@ -35,7 +37,7 @@ public class Receipt {
     public Integer getId() { return id; }
 
     @DynamoDbSortKey
-    public OffsetDateTime getDateTime() { return dateTime; }
+    public OffsetDateTime getTransactionDateTime() { return transactionDateTime; }
 
 
     public static final class Builder {
