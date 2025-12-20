@@ -5,19 +5,26 @@ import software.amazon.awssdk.auth.credentials.AwsBasicCredentials;
 import software.amazon.awssdk.auth.credentials.StaticCredentialsProvider;
 import software.amazon.awssdk.enhanced.dynamodb.DynamoDbEnhancedClient;
 import software.amazon.awssdk.enhanced.dynamodb.DynamoDbTable;
+import software.amazon.awssdk.enhanced.dynamodb.Key;
 import software.amazon.awssdk.enhanced.dynamodb.TableSchema;
 import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.services.dynamodb.DynamoDbClient;
+import software.amazon.awssdk.services.dynamodb.model.AttributeValue;
+import software.amazon.awssdk.services.dynamodb.model.GetItemRequest;
+import software.amazon.awssdk.services.dynamodb.model.GetItemResponse;
 
 import java.net.URI;
+import java.util.Map;
 
 public class ReceiptDao {
 
     private final DynamoDbClient ddbClient;
     private final DynamoDbEnhancedClient enhancedClient;
+    private DynamoDbTable<Receipt> receiptTable;
 
     public ReceiptDao() {
-        // TODO: update instantiation for dynamic use
+        // TODO: update instantiation for continual use
+        // TODO: hook up to AWS remote, then set up run params for localhost vs remote connection
         ddbClient = DynamoDbClient.builder()
                 .region(Region.US_EAST_2)
                 .endpointOverride(URI.create("http://localhost:8000"))
@@ -25,6 +32,7 @@ public class ReceiptDao {
                         AwsBasicCredentials.create("dummy", "dummy")))
                 .build();
         enhancedClient = DynamoDbEnhancedClient.builder().dynamoDbClient(ddbClient).build();
+        this.receiptTable = createReceiptTable();
 //        AWSCredentialsProvider credentialsProvider = new ProfileCredentialsProvider();
 //        new AmazonEC2Client(credentialsProvider)
     }
@@ -32,7 +40,6 @@ public class ReceiptDao {
     public void catalogueReceipt(Receipt receipt) {
         // TODO: update Commodity timesPurchased
         // TODO: figure out elegant way to retrieve existing table
-        DynamoDbTable<Receipt> receiptTable = createReceiptTable();
 
         try {
             System.out.println("Attempting putItem");
@@ -42,8 +49,13 @@ public class ReceiptDao {
             System.out.println(ex.getMessage());
             System.out.println("Receipt storage failed.");
         }
-
+        // TODO: return key?  or find way to search receipt by another value(s)
         ddbClient.close();
+    }
+
+    public Receipt getReceipt(Integer id) {
+        Key key = Key.builder().partitionValue(id).build();
+        return receiptTable.getItem(r -> r.key(key));
     }
 
     private DynamoDbTable<Receipt> createReceiptTable() {
