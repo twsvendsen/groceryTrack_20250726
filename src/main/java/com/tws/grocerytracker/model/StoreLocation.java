@@ -1,11 +1,19 @@
 package com.tws.grocerytracker.model;
 
-import lombok.Data;
-import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbBean;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
-@Data
-@DynamoDbBean
+@Entity
+@Table(name = "storeLocation")
 public class StoreLocation {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
     private String storeName;
     private String address;
 }

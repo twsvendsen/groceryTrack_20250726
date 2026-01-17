@@ -1,8 +1,9 @@
 package com.tws.grocerytracker.model;
 
-import lombok.Data;
+import jakarta.persistence.Entity;
 
-@Data
+@Entity
 public class Food extends Commodity {
+
     private String flavor;
 }

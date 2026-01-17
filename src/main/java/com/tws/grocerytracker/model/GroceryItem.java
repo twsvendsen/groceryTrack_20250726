@@ -1,15 +1,20 @@
 package com.tws.grocerytracker.model;
 
-import lombok.Data;
-import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbBean;
-
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 
-@Data
-@DynamoDbBean
+@Entity
+@Table(name = "groceryItem")
 public class GroceryItem {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer uniqueId;
+
     private Commodity commodity;
     private BigDecimal costAtPurchase;
     private OffsetDateTime timeOfPurchase;
