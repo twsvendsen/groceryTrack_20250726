@@ -12,6 +12,8 @@ public class ReceiptDto {
     private String transactionDateTime;
     private List<String> groceryItems;
     private BigDecimal totalCost;
+    private String storeName;
+    private String address;
 
     public String getTransactionDateTime() {
         return transactionDateTime;
@@ -23,5 +25,13 @@ public class ReceiptDto {
 
     public BigDecimal getTotalCost() {
         return totalCost;
+    }
+
+    public String getStoreName() {
+        return storeName;
+    }
+
+    public String getAddress() {
+        return address;
     }
 }
