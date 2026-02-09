@@ -15,8 +15,9 @@ public class GroceryItem {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer uniqueId;
 
-    private Commodity commodity;
+    private Integer receiptId;
+    private Integer commodityId;
+    private Integer storeLocationId;
     private BigDecimal costAtPurchase;
     private OffsetDateTime timeOfPurchase;
-    private StoreLocation locationOfPurchase;
 }

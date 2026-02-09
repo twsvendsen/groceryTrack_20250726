@@ -14,7 +14,7 @@ public class ReceiptMapper {
                 // TODO: error handling for below
                 .transactionDateTime(OffsetDateTime.parse(receiptDto.getTransactionDateTime()))
                 .totalCost(receiptDto.getTotalCost())
-                .storeLocationId(storeLocation.id())
+                .storeLocationId(storeLocation.getId())
                 .build();
 
         return receipt;

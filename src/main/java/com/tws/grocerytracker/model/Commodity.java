@@ -14,6 +14,7 @@ public class Commodity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String itemName;
+    private ItemCategory itemCategory;
     private String brand;
     private Integer timesPurchased;
 }
