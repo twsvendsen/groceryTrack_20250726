@@ -1,25 +1,43 @@
 package com.tws.grocerytracker.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
+import lombok.Data;
+
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 import java.util.List;
 
 @Entity
-@Table(name = "receipt")
+@Data
+@Table(name = "receipt",
+        uniqueConstraints = {
+                @UniqueConstraint(columnNames = {"transactionDateTime", "storeLocationId"})
+        }
+)
 public class Receipt {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Column(name = "recordCreationDateTime")
     private OffsetDateTime recordCreationDateTime;
+
+    @Column(name = "transactionDateTime")
     private OffsetDateTime transactionDateTime;
+
+    @Column(name = "groceryItems")
     private List<GroceryItem> groceryItems;
+
+    @Column(name = "storeLocationId")
     private Integer storeLocationId;
+
+    @Column(name = "totalCost")
     private BigDecimal totalCost;
 
     public Receipt(){};

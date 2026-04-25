@@ -17,6 +17,6 @@
     </option>
   </component>
   <component name="connectionManager">
-    <option name="activeConnectionId" value="sso-session:my-sso" />
+    <option name="activeConnectionId" value="sso-session:twsDev" />
   </component>
 </project>
