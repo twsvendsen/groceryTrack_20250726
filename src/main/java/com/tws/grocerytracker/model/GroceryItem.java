@@ -33,4 +33,37 @@ public class GroceryItem {
 
     @Column(name = "timeOfPurchase")
     private OffsetDateTime timeOfPurchase;
+
+    public GroceryItem(){};
+
+    public GroceryItem(Builder builder) {
+        this.uniqueId = builder.uniqueId;
+        this.receiptId = builder.receiptId;
+        this.commodityId = builder.commodityId;
+        this.storeLocationId = builder.storeLocationId;
+        this.costAtPurchase = builder.costAtPurchase;
+        this.timeOfPurchase = builder.timeOfPurchase;
+    }
+
+
+    public static GroceryItem.Builder builder(){ return new GroceryItem.Builder(); }
+
+
+    public static final class Builder {
+        private Integer uniqueId;
+        private Integer receiptId;
+        private Integer commodityId;
+        private Integer storeLocationId;
+        private BigDecimal costAtPurchase;
+        private OffsetDateTime timeOfPurchase;
+        public Builder(){}
+
+        public GroceryItem.Builder uniqueId(Integer id) { this.uniqueId = id; return this; }
+        public GroceryItem.Builder receiptId(Integer id) { this.receiptId = id; return this; }
+        public GroceryItem.Builder commodityId(Integer id) { this.commodityId = id; return this; }
+        public GroceryItem.Builder storeLocationId(Integer storeLocationId) { this.storeLocationId = storeLocationId; return this; }
+        public GroceryItem.Builder costAtPurchase(BigDecimal costAtPurchase) { this.costAtPurchase = costAtPurchase; return this; }
+        public GroceryItem.Builder timeOfPurchase(OffsetDateTime transactionDateTime) { this.timeOfPurchase = transactionDateTime; return this; }
+        public GroceryItem build() { return new GroceryItem(this); }
+    }
 }

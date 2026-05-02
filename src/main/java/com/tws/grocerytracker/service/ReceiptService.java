@@ -6,7 +6,6 @@ import com.tws.grocerytracker.model.Commodity;
 import com.tws.grocerytracker.model.GroceryItem;
 import com.tws.grocerytracker.model.Receipt;
 import com.tws.grocerytracker.model.StoreLocation;
-import io.micrometer.common.util.StringUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import repository.CommodityRepository;
@@ -15,28 +14,19 @@ import repository.StoreRepository;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 public class ReceiptService {
 
     private ReceiptMapper receiptMapper;
+    private StoreService storeService;
     private ReceiptRepository receiptRepository;
     private StoreRepository storeRepository;
     private CommodityRepository commodityRepository;
 
     public void createReceipt(ReceiptDto receiptDto) {
-        Optional<StoreLocation> existingStoreLocation = storeRepository.findByStoreNameAndAddress(receiptDto.getStoreName(), receiptDto.getAddress());
-        StoreLocation storeLocation;
-        if(existingStoreLocation.isEmpty()) {
-            storeLocation = new StoreLocation();
-            storeLocation.setStoreName(receiptDto.getStoreName());
-            storeLocation.setAddress(receiptDto.getAddress());
-            storeRepository.save(storeLocation);
-        } else {
-            storeLocation = existingStoreLocation.get();
-        }
+        StoreLocation storeLocation = storeService.getOrCreateStoreLocationByNameAndAddress(receiptDto.getStoreName(), receiptDto.getAddress());
 
         List<GroceryItem> groceryItems = mapGroceryItems(receiptDto.getGroceryItems());
 
@@ -48,8 +38,9 @@ public class ReceiptService {
 
     private List<GroceryItem> mapGroceryItems(List<String> inputGroceryItems) {
         List<GroceryItem> receiptGroceryItems = new ArrayList<>();
+        List<Commodity> commodities = new ArrayList<>();
         if(inputGroceryItems != null && !inputGroceryItems.isEmpty()) {
-            receiptGroceryItems = commodityRepository.findAllByNameIn(inputGroceryItems);
+            commodities = commodityRepository.findAllByNameIn(inputGroceryItems);
         }
         return receiptGroceryItems;
     }

@@ -27,4 +27,7 @@ public class StoreLocation {
 
     @Column(name = "address")
     private String address;
+
+    @Column(name = "numberOfVisits")
+    private Integer numberOfVisits;
 }
