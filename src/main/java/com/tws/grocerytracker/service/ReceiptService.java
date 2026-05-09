@@ -2,17 +2,15 @@ package com.tws.grocerytracker.service;
 
 import com.tws.grocerytracker.dto.ReceiptDto;
 import com.tws.grocerytracker.mapper.ReceiptMapper;
-import com.tws.grocerytracker.model.Commodity;
 import com.tws.grocerytracker.model.GroceryItem;
 import com.tws.grocerytracker.model.Receipt;
 import com.tws.grocerytracker.model.StoreLocation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import repository.CommodityRepository;
-import repository.ReceiptRepository;
-import repository.StoreRepository;
+import com.tws.grocerytracker.repository.CommodityRepository;
+import com.tws.grocerytracker.repository.ReceiptRepository;
+import com.tws.grocerytracker.repository.StoreRepository;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -20,6 +18,7 @@ import java.util.List;
 public class ReceiptService {
 
     private ReceiptMapper receiptMapper;
+    private GroceryItemService groceryItemService;
     private StoreService storeService;
     private ReceiptRepository receiptRepository;
     private StoreRepository storeRepository;
@@ -28,21 +27,12 @@ public class ReceiptService {
     public void createReceipt(ReceiptDto receiptDto) {
         StoreLocation storeLocation = storeService.getOrCreateStoreLocationByNameAndAddress(receiptDto.getStoreName(), receiptDto.getAddress());
 
-        List<GroceryItem> groceryItems = mapGroceryItems(receiptDto.getGroceryItems());
-
-        Receipt receipt = receiptMapper.mapReceiptDtoToReceipt(receiptDto, storeLocation, groceryItems);
+        Receipt receipt = receiptMapper.mapReceiptDtoToReceipt(receiptDto, storeLocation);
+        List<GroceryItem> groceryItems = groceryItemService.buildGroceryItemList(receiptDto.getGroceryItems(), receipt, storeLocation);
+        receipt.setGroceryItems(groceryItems);
 
         receiptRepository.save(receipt);
         // TODO: may need to integrate address or store name normalization services
-    }
-
-    private List<GroceryItem> mapGroceryItems(List<String> inputGroceryItems) {
-        List<GroceryItem> receiptGroceryItems = new ArrayList<>();
-        List<Commodity> commodities = new ArrayList<>();
-        if(inputGroceryItems != null && !inputGroceryItems.isEmpty()) {
-            commodities = commodityRepository.findAllByNameIn(inputGroceryItems);
-        }
-        return receiptGroceryItems;
     }
 
     // update GroceryItem; is this needed?

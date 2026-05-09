@@ -5,13 +5,8 @@ import java.math.BigDecimal;
 import java.util.List;
 
 public class ReceiptDto {
-    // TODO: setup serialization id
-
     private String transactionDateTime;
-
-    // TODO: convert to unique dto type which also carries price, count or weight etc.
-    // need to research receipts to see what is appropriate
-    private List<String> groceryItems;
+    private List<GroceryItemDto> groceryItems;
     private BigDecimal totalCost;
     private String storeName;
     private String address;
@@ -20,7 +15,7 @@ public class ReceiptDto {
         return transactionDateTime;
     }
 
-    public List<String> getGroceryItems() {
+    public List<GroceryItemDto> getGroceryItems() {
         return groceryItems;
     }
 

@@ -5,6 +5,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
 import lombok.Data;
@@ -31,11 +33,13 @@ public class Receipt {
     @Column(name = "transactionDateTime")
     private OffsetDateTime transactionDateTime;
 
+    @OneToMany
     @Column(name = "groceryItems")
     private List<GroceryItem> groceryItems;
 
+    @ManyToOne
     @Column(name = "storeLocationId")
-    private Integer storeLocationId;
+    private StoreLocation storeLocation;
 
     @Column(name = "totalCost")
     private BigDecimal totalCost;
@@ -46,7 +50,7 @@ public class Receipt {
         this.id = builder.id;
         this.transactionDateTime = builder.transactionDateTime;
         this.groceryItems = builder.groceryItems;
-        this.storeLocationId = builder.storeLocationId;
+        this.storeLocation = builder.storeLocation;
         this.totalCost = builder.totalCost;
         this.recordCreationDateTime = OffsetDateTime.now();
     }
@@ -58,14 +62,14 @@ public class Receipt {
         private Integer id;
         private OffsetDateTime transactionDateTime;
         private List<GroceryItem> groceryItems;
-        private Integer storeLocationId;
+        private StoreLocation storeLocation;
         private BigDecimal totalCost;
         public Builder(){}
 
         public Builder id(Integer id) { this.id = id; return this; }
         public Builder transactionDateTime(OffsetDateTime transactionDateTime) { this.transactionDateTime = transactionDateTime; return this; }
         public Builder groceryItems(List<GroceryItem> groceryItems) { this.groceryItems = groceryItems; return this; }
-        public Builder storeLocationId(Integer storeLocationId) { this.storeLocationId = storeLocationId; return this; }
+        public Builder storeLocation(StoreLocation storeLocation) { this.storeLocation = storeLocation; return this; }
         public Builder totalCost(BigDecimal totalCost) { this.totalCost = totalCost; return this; }
         public Receipt build() { return new Receipt(this); }
     }

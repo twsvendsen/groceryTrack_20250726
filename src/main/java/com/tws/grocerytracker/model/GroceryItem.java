@@ -5,11 +5,11 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
 
 import java.math.BigDecimal;
-import java.time.OffsetDateTime;
 
 @Entity
 @Data
@@ -19,30 +19,29 @@ public class GroceryItem {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer uniqueId;
 
+    @ManyToOne
     @Column(name = "receiptId")
-    private Integer receiptId;
+    private Receipt receipt;
 
-    @Column(name = "receiptId")
-    private Integer commodityId;
+    @ManyToOne
+    @Column(name = "commodityId")
+    private Commodity commodity;
 
+    @ManyToOne
     @Column(name = "storeLocationId")
-    private Integer storeLocationId;
+    private StoreLocation storeLocation;
 
     @Column(name = "costAtPurchase")
     private BigDecimal costAtPurchase;
-
-    @Column(name = "timeOfPurchase")
-    private OffsetDateTime timeOfPurchase;
 
     public GroceryItem(){};
 
     public GroceryItem(Builder builder) {
         this.uniqueId = builder.uniqueId;
-        this.receiptId = builder.receiptId;
-        this.commodityId = builder.commodityId;
-        this.storeLocationId = builder.storeLocationId;
+        this.receipt = builder.receipt;
+        this.commodity = builder.commodity;
+        this.storeLocation = builder.storeLocation;
         this.costAtPurchase = builder.costAtPurchase;
-        this.timeOfPurchase = builder.timeOfPurchase;
     }
 
 
@@ -51,19 +50,17 @@ public class GroceryItem {
 
     public static final class Builder {
         private Integer uniqueId;
-        private Integer receiptId;
-        private Integer commodityId;
-        private Integer storeLocationId;
+        private Receipt receipt;
+        private Commodity commodity;
+        private StoreLocation storeLocation;
         private BigDecimal costAtPurchase;
-        private OffsetDateTime timeOfPurchase;
         public Builder(){}
 
         public GroceryItem.Builder uniqueId(Integer id) { this.uniqueId = id; return this; }
-        public GroceryItem.Builder receiptId(Integer id) { this.receiptId = id; return this; }
-        public GroceryItem.Builder commodityId(Integer id) { this.commodityId = id; return this; }
-        public GroceryItem.Builder storeLocationId(Integer storeLocationId) { this.storeLocationId = storeLocationId; return this; }
+        public GroceryItem.Builder receipt(Receipt receipt) { this.receipt = receipt; return this; }
+        public GroceryItem.Builder commodity(Commodity commodity) { this.commodity = commodity; return this; }
+        public GroceryItem.Builder storeLocation(StoreLocation storeLocation) { this.storeLocation = storeLocation; return this; }
         public GroceryItem.Builder costAtPurchase(BigDecimal costAtPurchase) { this.costAtPurchase = costAtPurchase; return this; }
-        public GroceryItem.Builder timeOfPurchase(OffsetDateTime transactionDateTime) { this.timeOfPurchase = transactionDateTime; return this; }
         public GroceryItem build() { return new GroceryItem(this); }
     }
 }

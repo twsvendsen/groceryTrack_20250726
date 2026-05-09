@@ -1,4 +1,4 @@
-package repository;
+package com.tws.grocerytracker.repository;
 
 import com.tws.grocerytracker.model.StoreLocation;
 import org.springframework.data.jpa.repository.JpaRepository;

@@ -5,7 +5,7 @@ import com.tws.grocerytracker.mapper.StoreLocationMapper;
 import com.tws.grocerytracker.model.StoreLocation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import repository.StoreRepository;
+import com.tws.grocerytracker.repository.StoreRepository;
 
 import java.util.Optional;
 
@@ -19,8 +19,8 @@ public class StoreService {
     public StoreLocation getOrCreateStoreLocationByNameAndAddress(String storeName, String storeAddress) {
         Optional<StoreLocation> existingStoreLocation = storeRepository.findByStoreNameAndAddress(storeName, storeAddress);
         StoreLocation storeLocation;
-        storeLocation = existingStoreLocation.orElseGet(() -> storeLocationMapper.mapStoreDetailsToStoreLocation(storeName, storeAddress));
-        storeLocation.setNumberOfVisits(storeLocation.getNumberOfVisits() + 1);
+        storeLocation = existingStoreLocation.orElseGet(() -> storeLocationMapper.mapStoreDetailsToNewStoreLocation(storeName, storeAddress));
+        storeLocation.setNumberOfVisits(storeLocation.getNumberOfVisits() != null ? storeLocation.getNumberOfVisits() + 1 : 1);
         storeRepository.save(storeLocation);
         return storeLocation;
     }
