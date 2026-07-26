@@ -8,7 +8,6 @@ import com.tws.grocerytracker.model.StoreLocation;
 
 public class GroceryItemMapper {
     public GroceryItem mapGroceryItemDtoToGroceryItem(GroceryItemDto groceryItemDto, Receipt receipt, StoreLocation storeLocation, Commodity commodity) {
-
         GroceryItem groceryItem = new GroceryItem.Builder()
                 // TODO: error handling for below
                 .receipt(receipt)
