@@ -1,14 +1,6 @@
 package com.tws.grocerytracker.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
-import jakarta.persistence.UniqueConstraint;
+import jakarta.persistence.*;
 import lombok.Data;
 
 import java.math.BigDecimal;
@@ -38,11 +30,14 @@ public class Receipt {
     private List<GroceryItem> groceryItems;
 
     @ManyToOne
-    @Column(name = "storeLocationId")
+    @JoinColumn(name = "storeLocationId")
     private StoreLocation storeLocation;
 
     @Column(name = "totalCost")
     private BigDecimal totalCost;
+
+    @Column(name = "subtotalCost")
+    private BigDecimal subtotalCost;
 
     public Receipt(){};
 
@@ -52,6 +47,7 @@ public class Receipt {
         this.groceryItems = builder.groceryItems;
         this.storeLocation = builder.storeLocation;
         this.totalCost = builder.totalCost;
+        this.subtotalCost = builder.subtotalCost;
         this.recordCreationDateTime = OffsetDateTime.now();
     }
 
@@ -64,6 +60,7 @@ public class Receipt {
         private List<GroceryItem> groceryItems;
         private StoreLocation storeLocation;
         private BigDecimal totalCost;
+        private BigDecimal subtotalCost;
         public Builder(){}
 
         public Builder id(Integer id) { this.id = id; return this; }
@@ -71,6 +68,7 @@ public class Receipt {
         public Builder groceryItems(List<GroceryItem> groceryItems) { this.groceryItems = groceryItems; return this; }
         public Builder storeLocation(StoreLocation storeLocation) { this.storeLocation = storeLocation; return this; }
         public Builder totalCost(BigDecimal totalCost) { this.totalCost = totalCost; return this; }
+        public Builder subtotalCost(BigDecimal subtotalCost) { this.subtotalCost = subtotalCost; return this; }
         public Receipt build() { return new Receipt(this); }
     }
 }

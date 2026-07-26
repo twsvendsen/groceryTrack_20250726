@@ -11,8 +11,6 @@ import com.tws.grocerytracker.repository.CommodityRepository;
 import com.tws.grocerytracker.repository.ReceiptRepository;
 import com.tws.grocerytracker.repository.StoreRepository;
 
-import java.util.List;
-
 @Service
 @RequiredArgsConstructor
 public class ReceiptService {
@@ -28,11 +26,9 @@ public class ReceiptService {
         StoreLocation storeLocation = storeService.getOrCreateStoreLocationByNameAndAddress(receiptDto.getStoreName(), receiptDto.getAddress());
 
         Receipt receipt = receiptMapper.mapReceiptDtoToReceipt(receiptDto, storeLocation);
-        List<GroceryItem> groceryItems = groceryItemService.buildGroceryItemList(receiptDto.getGroceryItems(), receipt, storeLocation);
-        receipt.setGroceryItems(groceryItems);
+        groceryItemService.buildAndMapGroceryItemList(receiptDto.getGroceryItems(), receipt, storeLocation);
 
         receiptRepository.save(receipt);
-        // TODO: may need to integrate address or store name normalization services
     }
 
     // update GroceryItem; is this needed?

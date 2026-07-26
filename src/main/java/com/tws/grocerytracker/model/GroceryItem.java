@@ -1,12 +1,6 @@
 package com.tws.grocerytracker.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
 
 import java.math.BigDecimal;
@@ -20,15 +14,15 @@ public class GroceryItem {
     private Integer uniqueId;
 
     @ManyToOne
-    @Column(name = "receiptId")
+    @JoinColumn(name = "receiptId")
     private Receipt receipt;
 
     @ManyToOne
-    @Column(name = "commodityId")
+    @JoinColumn(name = "commodityId")
     private Commodity commodity;
 
     @ManyToOne
-    @Column(name = "storeLocationId")
+    @JoinColumn(name = "storeLocationId")
     private StoreLocation storeLocation;
 
     @Column(name = "costAtPurchase")

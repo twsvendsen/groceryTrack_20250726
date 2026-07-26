@@ -9,14 +9,13 @@ import java.time.OffsetDateTime;
 public class ReceiptMapper {
 
     public Receipt mapReceiptDtoToReceipt(ReceiptDto receiptDto, StoreLocation storeLocation) {
-        // TODO: validate receipt was scanned correctly
-        Receipt receipt = new Receipt.Builder()
+
+        return new Receipt.Builder()
                 // TODO: error handling for below
                 .transactionDateTime(OffsetDateTime.parse(receiptDto.getTransactionDateTime()))
                 .totalCost(receiptDto.getTotalCost())
+                .subtotalCost(receiptDto.getSubtotalCost())
                 .storeLocation(storeLocation)
                 .build();
-
-        return receipt;
     }
 }

@@ -17,6 +17,7 @@ public class StoreService {
     private StoreLocationMapper storeLocationMapper;
 
     public StoreLocation getOrCreateStoreLocationByNameAndAddress(String storeName, String storeAddress) {
+        // TODO: may need to integrate address or store name normalization services
         Optional<StoreLocation> existingStoreLocation = storeRepository.findByStoreNameAndAddress(storeName, storeAddress);
         StoreLocation storeLocation;
         storeLocation = existingStoreLocation.orElseGet(() -> storeLocationMapper.mapStoreDetailsToNewStoreLocation(storeName, storeAddress));
