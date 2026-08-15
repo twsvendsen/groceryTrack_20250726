@@ -3,10 +3,15 @@ package com.tws.grocerytracker.service;
 import com.tws.grocerytracker.mapper.CommodityMapper;
 import com.tws.grocerytracker.model.Commodity;
 import com.tws.grocerytracker.repository.CommodityRepository;
+import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.time.OffsetDateTime;
 import java.util.List;
 
+@Service
+@AllArgsConstructor
 public class CommodityService {
 
     private CommodityMapper commodityMapper;

@@ -3,6 +3,7 @@ package com.tws.grocerytracker.service;
 
 import com.tws.grocerytracker.mapper.StoreLocationMapper;
 import com.tws.grocerytracker.model.StoreLocation;
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import com.tws.grocerytracker.repository.StoreRepository;
@@ -10,7 +11,7 @@ import com.tws.grocerytracker.repository.StoreRepository;
 import java.util.Optional;
 
 @Service
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class StoreService {
 
     private StoreRepository storeRepository;

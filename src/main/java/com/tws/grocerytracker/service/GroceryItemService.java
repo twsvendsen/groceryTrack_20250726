@@ -8,6 +8,7 @@ import com.tws.grocerytracker.model.Receipt;
 import com.tws.grocerytracker.model.StoreLocation;
 import com.tws.grocerytracker.repository.GroceryItemRepository;
 import io.micrometer.common.util.StringUtils;
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import com.tws.grocerytracker.repository.CommodityRepository;
@@ -17,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class GroceryItemService {
 
     private CommodityService commodityService;

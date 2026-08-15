@@ -2,7 +2,7 @@ package com.tws.grocerytracker.api;
 
 import com.tws.grocerytracker.dto.ReceiptDto;
 import com.tws.grocerytracker.service.ReceiptService;
-import lombok.RequiredArgsConstructor;
+import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.lang.Nullable;
@@ -15,7 +15,7 @@ import jakarta.validation.Valid;
 import jakarta.validation.constraints.Pattern;
 
 @Component
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class ReceiptApi {
 
     private ReceiptService receiptService;

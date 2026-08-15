@@ -42,9 +42,9 @@ public class Main {
         receiptDto.setStoreName("Babblemart");
         receiptDto.setTotalCost(new BigDecimal("21.78"));
 
-        ReceiptService receiptService = new ReceiptService();
-        receiptService.createReceipt(receiptDto);
-
-        System.out.println("main thread concluding");
+//        ReceiptService receiptService = new ReceiptService();
+//        receiptService.createReceipt(receiptDto);
+//
+//        System.out.println("main thread concluding");
     }
 }
