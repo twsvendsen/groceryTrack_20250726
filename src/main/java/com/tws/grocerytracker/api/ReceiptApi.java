@@ -13,9 +13,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Pattern;
+import org.springframework.web.bind.annotation.RestController;
 
-@Component
+@RestController
 @AllArgsConstructor
+@RequestMapping("/receipt")
 public class ReceiptApi {
 
     private ReceiptService receiptService;

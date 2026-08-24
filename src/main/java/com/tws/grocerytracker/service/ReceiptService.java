@@ -6,12 +6,8 @@ import com.tws.grocerytracker.model.GroceryItem;
 import com.tws.grocerytracker.model.Receipt;
 import com.tws.grocerytracker.model.StoreLocation;
 import lombok.AllArgsConstructor;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import com.tws.grocerytracker.repository.CommodityRepository;
 import com.tws.grocerytracker.repository.ReceiptRepository;
-import com.tws.grocerytracker.repository.StoreRepository;
 
 @Service
 @AllArgsConstructor

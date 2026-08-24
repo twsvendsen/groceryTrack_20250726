@@ -4,18 +4,31 @@ import com.tws.grocerytracker.app.Application;
 import com.tws.grocerytracker.dto.GroceryItemDto;
 import com.tws.grocerytracker.dto.ReceiptDto;
 import com.tws.grocerytracker.service.ReceiptService;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.webmvc.test.autoconfigure.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+
+import static org.junit.jupiter.api.Assertions.fail;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.multipart;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.math.BigDecimal;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Locale;
@@ -29,11 +42,20 @@ import java.util.Locale;
 public class Receipt_IT {
 
     @Autowired
-    private MockMvc mvc;
+    private MockMvc mockMvc;
 
     private ReceiptService receiptService;
 
     private ReceiptApi receiptApi;
+
+    @BeforeEach
+    void setup() {
+        this.mockMvc = MockMvcBuilders.standaloneSetup(receiptApi)
+                .defaultRequest(get("/").accept(MediaType.APPLICATION_JSON))
+                .alwaysExpect(status().isOk())
+                .alwaysExpect(content().contentType("application/json;charset=UTF-8"))
+                .build();
+    }
 
     @Test
     public void testApp() {
@@ -49,11 +71,18 @@ public class Receipt_IT {
         receiptDto.setTotalCost(new BigDecimal(2));
         receiptDto.setTransactionDateTime(OffsetDateTime.now().toString());
 
+//        String requestBody = Files.readString(Path.of(""));
+
         // when
+        try {
+            mockMvc.perform(multipart("/receipt").file("testReceipt", Files.readString(Path.of("src/test/resources/requests/testReceipt.xml")).getBytes(StandardCharsets.UTF_8)));
+        } catch (Exception e) {
+            System.out.println(e.getCause().toString());
+            fail("exception thrown");
+        }
         ResponseEntity<Void> responseEntity = receiptApi.createReceipt(Locale.US.toString(), receiptDto);
 
         // then
-        // TODO: set up mockito
 //        responseEntity.getStatusCode() == HttpStatus.OK;
     }
 }
