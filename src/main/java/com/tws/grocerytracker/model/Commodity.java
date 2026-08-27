@@ -15,7 +15,7 @@ import java.time.OffsetDateTime;
 @Data
 @Table(name = "commodity",
         uniqueConstraints = {
-                @UniqueConstraint(columnNames = {"itemName", "brand"})
+                @UniqueConstraint(columnNames = {"name", "brand"})
         })
 public class Commodity {
 
@@ -23,18 +23,18 @@ public class Commodity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "itemName")
-    private String itemName;
+    @Column(name = "name")
+    private String name;
 
-    @Column(name = "itemCategory")
-    private ItemCategory itemCategory;
+    @Column(name = "category")
+    private ItemCategory category;
 
     @Column(name = "brand")
     private String brand;
 
-    @Column(name = "timesPurchased")
+    @Column(name = "times_purchased")
     private Integer timesPurchased;
 
-    @Column(name = "timeOfLatestPurchase")
-    private OffsetDateTime timeOfLatestPurchase;
+    @Column(name = "latest_purchase_datetime")
+    private OffsetDateTime latestPurchaseDateTime;
 }

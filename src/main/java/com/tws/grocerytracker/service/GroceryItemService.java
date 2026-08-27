@@ -9,11 +9,9 @@ import com.tws.grocerytracker.model.StoreLocation;
 import com.tws.grocerytracker.repository.GroceryItemRepository;
 import io.micrometer.common.util.StringUtils;
 import lombok.AllArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import com.tws.grocerytracker.repository.CommodityRepository;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,9 +41,9 @@ public class GroceryItemService {
             // find and map commodity types
             Commodity matchedCommodity = existingCommodities.stream()
                     .filter(commodity ->
-                            StringUtils.isNotEmpty(commodity.getItemName())
+                            StringUtils.isNotEmpty(commodity.getName())
                                     && StringUtils.isNotEmpty(inputGroceryItem.getNameOfProduct())
-                                    && commodity.getItemName().equalsIgnoreCase(inputGroceryItem.getNameOfProduct()))
+                                    && commodity.getName().equalsIgnoreCase(inputGroceryItem.getNameOfProduct()))
                     .findFirst().orElse(
                             // create and save new commodity
                             commodityService.createNewCommodity(inputGroceryItem.getNameOfProduct(), receipt.getTransactionDateTime()));

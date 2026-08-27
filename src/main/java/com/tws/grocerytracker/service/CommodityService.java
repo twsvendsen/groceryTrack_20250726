@@ -4,7 +4,6 @@ import com.tws.grocerytracker.mapper.CommodityMapper;
 import com.tws.grocerytracker.model.Commodity;
 import com.tws.grocerytracker.repository.CommodityRepository;
 import lombok.AllArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.OffsetDateTime;
@@ -28,7 +27,7 @@ public class CommodityService {
 
     public void updateCommodities(List<Commodity> commodities, OffsetDateTime transactionDateTime) {
         for(Commodity commodity : commodities) {
-            commodity.setTimeOfLatestPurchase(transactionDateTime);
+            commodity.setLatestPurchaseDateTime(transactionDateTime);
             commodity.setTimesPurchased(commodity.getTimesPurchased() + 1);
         }
     }

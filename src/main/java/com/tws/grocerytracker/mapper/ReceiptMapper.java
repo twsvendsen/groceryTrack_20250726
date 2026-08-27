@@ -18,4 +18,6 @@ public class ReceiptMapper {
                 .storeLocation(storeLocation)
                 .build();
     }
+
+    // need to map groceryItems to receipt object during receipt retrieve
 }

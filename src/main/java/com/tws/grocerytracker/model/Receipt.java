@@ -20,7 +20,7 @@ import java.util.List;
 @Data
 @Table(name = "receipt",
         uniqueConstraints = {
-                @UniqueConstraint(columnNames = {"transactionDateTime", "storeLocationId"})
+                @UniqueConstraint(columnNames = {"transaction_datetime", "store_location_id"})
         }
 )
 public class Receipt {
@@ -28,24 +28,23 @@ public class Receipt {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "recordCreationDateTime")
+    @Column(name = "record_creation_datetime")
     private OffsetDateTime recordCreationDateTime;
 
-    @Column(name = "transactionDateTime")
+    @Column(name = "transaction_datetime")
     private OffsetDateTime transactionDateTime;
 
     @OneToMany
-    @Column(name = "groceryItems")
     private List<GroceryItem> groceryItems;
 
     @ManyToOne
-    @JoinColumn(name = "storeLocationId")
+    @JoinColumn(name = "store_location_id")
     private StoreLocation storeLocation;
 
-    @Column(name = "totalCost")
+    @Column(name = "total_cost")
     private BigDecimal totalCost;
 
-    @Column(name = "subtotalCost")
+    @Column(name = "subtotal_cost")
     private BigDecimal subtotalCost;
 
     public Receipt(){};

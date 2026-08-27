@@ -44,8 +44,10 @@ public class Receipt_IT {
     @Autowired
     private MockMvc mockMvc;
 
+    @Autowired
     private ReceiptService receiptService;
 
+    @Autowired
     private ReceiptApi receiptApi;
 
     @BeforeEach
