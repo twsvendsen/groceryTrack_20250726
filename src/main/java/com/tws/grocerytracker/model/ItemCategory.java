@@ -1,11 +1,11 @@
 package com.tws.grocerytracker.model;
 
 public enum ItemCategory {
-    FOOD("Food"),
-    COOKWARE("Cookware"),
-    FURNITURE("Furniture"),
-    HOUSEHOLD("Household item"),
-    OTHER("Other");
+    FOOD("food"),
+    COOKWARE("cookware"),
+    FURNITURE("furniture"),
+    HOUSEHOLD("household item"),
+    OTHER("other");
 
     ItemCategory(String s) {
     }

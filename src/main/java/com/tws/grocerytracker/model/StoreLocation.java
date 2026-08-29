@@ -11,9 +11,9 @@ import lombok.Data;
 
 @Entity
 @Data
-@Table(name = "storeLocation",
+@Table(name = "store_location",
         uniqueConstraints = {
-                @UniqueConstraint(columnNames = {"storeName", "address"})
+                @UniqueConstraint(columnNames = {"store_name", "address"})
         }
     )
 public class StoreLocation {
@@ -22,12 +22,12 @@ public class StoreLocation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "storeName")
+    @Column(name = "store_name")
     private String storeName;
 
     @Column(name = "address")
     private String address;
 
-    @Column(name = "numberOfVisits")
+    @Column(name = "number_of_visits")
     private Integer numberOfVisits;
 }
