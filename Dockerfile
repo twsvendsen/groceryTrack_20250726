@@ -1,5 +1,5 @@
 # copy pasted from docker ref project
-# TODO: UNDERSTAND AND UPDATE
+# TODO: UNDERSTAND AND UPDATE AS NECESSARY
 
 FROM --platform=$BUILDPLATFORM maven:3.8.5-eclipse-temurin-17 AS builder
 WORKDIR /workdir/server

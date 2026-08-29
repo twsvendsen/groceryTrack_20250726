@@ -14,6 +14,7 @@ import com.tws.grocerytracker.repository.CommodityRepository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -33,7 +34,11 @@ public class GroceryItemService {
             return;
         }
 
-        existingCommodities = commodityRepository.findAllByNameOfProductIn(inputGroceryItems);
+        List<String> products = inputGroceryItems.stream()
+                .map(GroceryItemDto::getNameOfProduct)
+                .collect(Collectors.toList());
+
+        existingCommodities = commodityRepository.findAllByNameIn(products);
 
         // build and save groceryItems
         for(GroceryItemDto inputGroceryItem : inputGroceryItems) {
