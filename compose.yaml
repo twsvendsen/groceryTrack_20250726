@@ -4,7 +4,7 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - 5432:5432
+      - '5432:5432'
     environment:
       - POSTGRES_DB=myFirstPostgres
     networks:
@@ -19,11 +19,13 @@ services:
     networks:
       - spring-postgres
     environment:
+      - POSTGRES_USER=myUser
       - POSTGRES_DB=myFirstPostgres
       - POSTGRES_PASSWORD_FILE=/run/secrets/db-password
     expose:
       - 5432
 volumes:
+#  TODO: volume mount setup, for persisting data through multiple sessions (?)
   db-data:
 secrets:
   db-password:

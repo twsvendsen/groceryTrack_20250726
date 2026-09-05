@@ -14,7 +14,7 @@
     <option name="myOrdered" value="true" />
     <option name="myNullables">
       <value>
-        <list size="15">
+        <list size="16">
           <item index="0" class="java.lang.String" itemvalue="com.android.annotations.Nullable" />
           <item index="1" class="java.lang.String" itemvalue="androidx.annotation.RecentlyNullable" />
           <item index="2" class="java.lang.String" itemvalue="androidx.annotation.Nullable" />
@@ -30,12 +30,13 @@
           <item index="12" class="java.lang.String" itemvalue="javax.annotation.CheckForNull" />
           <item index="13" class="java.lang.String" itemvalue="org.springframework.lang.Nullable" />
           <item index="14" class="java.lang.String" itemvalue="jakarta.annotation.Nullable" />
+          <item index="15" class="java.lang.String" itemvalue="android.annotation.Nullable" />
         </list>
       </value>
     </option>
     <option name="myNotNulls">
       <value>
-        <list size="15">
+        <list size="16">
           <item index="0" class="java.lang.String" itemvalue="androidx.annotation.RecentlyNonNull" />
           <item index="1" class="java.lang.String" itemvalue="androidx.annotation.NonNull" />
           <item index="2" class="java.lang.String" itemvalue="android.support.annotation.NonNull" />
@@ -51,11 +52,12 @@
           <item index="12" class="java.lang.String" itemvalue="org.springframework.lang.NonNull" />
           <item index="13" class="java.lang.String" itemvalue="jakarta.annotation.Nonnull" />
           <item index="14" class="java.lang.String" itemvalue="lombok.NonNull" />
+          <item index="15" class="java.lang.String" itemvalue="android.annotation.NonNull" />
         </list>
       </value>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_26" default="true" project-jdk-name="26" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_24" default="true" project-jdk-name="24 (2)" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
   </component>
 </project>

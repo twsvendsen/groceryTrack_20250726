@@ -28,10 +28,10 @@ RUN jar -xf ../*.jar
 
 FROM eclipse-temurin:26-jre
 
-EXPOSE 8080
+EXPOSE 5432
 VOLUME /tmp
 ARG DEPENDENCY=/workdir/server/target/dependency
 COPY --from=prepare-production ${DEPENDENCY}/BOOT-INF/lib /app/lib
 COPY --from=prepare-production ${DEPENDENCY}/META-INF /app/META-INF
 COPY --from=prepare-production ${DEPENDENCY}/BOOT-INF/classes /app
-ENTRYPOINT ["java","-cp","app:app/lib/*","com.tws.grocerytracker.app.Application"]
+ENTRYPOINT ["java","-cp","app:app/lib/*","com.tws.grocerytracker.app.Schmapplication"]

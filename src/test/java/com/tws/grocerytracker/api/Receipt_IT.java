@@ -1,6 +1,6 @@
 package com.tws.grocerytracker.api;
 
-import com.tws.grocerytracker.app.Application;
+import com.tws.grocerytracker.app.Schmapplication;
 import com.tws.grocerytracker.dto.GroceryItemDto;
 import com.tws.grocerytracker.dto.ReceiptDto;
 import com.tws.grocerytracker.service.ReceiptService;
@@ -10,7 +10,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.webmvc.test.autoconfigure.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
@@ -36,7 +35,7 @@ import java.util.Locale;
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(
         webEnvironment = SpringBootTest.WebEnvironment.MOCK,
-        classes = Application.class)
+        classes = Schmapplication.class)
 @AutoConfigureMockMvc
 @WebAppConfiguration
 public class Receipt_IT {
