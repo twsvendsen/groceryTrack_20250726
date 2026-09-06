@@ -1,19 +1,21 @@
 services:
-  backend:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    ports:
-      - '5432:5432'
-    environment:
-      - POSTGRES_DB=myFirstPostgres
-    networks:
-      - spring-postgres
+#  backend:
+#    build:
+#      context: .
+#      dockerfile: Dockerfile
+#    ports:
+#      - '5432:5432'
+#    environment:
+#      - POSTGRES_USER=myUser
+#      - POSTGRES_PASSWORD=123abc
+#      - POSTGRES_DB=myFirstPostgres
+#    networks:
+#      - spring-postgres
   db:
     image: postgres
     restart: always
-    secrets:
-      - db-password
+#    secrets:
+#      - db-password
     volumes:
       - db-data:/var/lib/postgresql
     networks:
@@ -21,9 +23,29 @@ services:
     environment:
       - POSTGRES_USER=myUser
       - POSTGRES_DB=myFirstPostgres
-      - POSTGRES_PASSWORD_FILE=/run/secrets/db-password
-    expose:
-      - 5432
+      - POSTGRES_PASSWORD=123abc
+    ports:
+      - "8001:5432"
+#  app:
+#    depends_on:
+#      - postgresdb
+#    build: ./bezkoder-app
+#    restart: on-failure
+#    env_file: ./.env
+#    ports:
+#      - 5432
+#    environment:
+#      SPRING_APPLICATION_JSON: '{
+#        "spring.datasource.url"  : "jdbc:postgresql://localhost:5432/myFirstPostgres",
+#        "spring.datasource.username" : "myUser",
+#        "spring.datasource.password" : "123abc",
+#        "spring.jpa.properties.hibernate.dialect" : "org.hibernate.dialect.PostgreSQLDialect",
+#        "spring.jpa.hibernate.ddl-auto" : "update"
+#      }'
+#    volumes:
+#      - .m2:/root/.m2
+#    stdin_open: true
+#    tty: true
 volumes:
 #  TODO: volume mount setup, for persisting data through multiple sessions (?)
   db-data:
