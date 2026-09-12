@@ -5,7 +5,9 @@ import com.tws.grocerytracker.model.Commodity;
 import com.tws.grocerytracker.model.GroceryItem;
 import com.tws.grocerytracker.model.Receipt;
 import com.tws.grocerytracker.model.StoreLocation;
+import org.springframework.stereotype.Service;
 
+@Service
 public class GroceryItemMapper {
     public GroceryItem mapGroceryItemDtoToGroceryItem(GroceryItemDto groceryItemDto, Receipt receipt, StoreLocation storeLocation, Commodity commodity) {
         GroceryItem groceryItem = new GroceryItem.Builder()

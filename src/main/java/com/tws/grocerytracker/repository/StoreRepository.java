@@ -8,6 +8,6 @@ import java.util.Optional;
 
 @Repository
 public interface StoreRepository extends JpaRepository<StoreLocation, Integer> {
-    Optional<StoreLocation> findByStoreNameAndAddress(String storeName, String address);
+    Optional<StoreLocation> findByStoreNameAndZipcode(String storeName, String zipcode);
 
 }

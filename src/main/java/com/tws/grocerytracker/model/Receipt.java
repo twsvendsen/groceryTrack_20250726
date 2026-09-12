@@ -20,7 +20,7 @@ import java.util.List;
 @Data
 @Table(name = "receipt",
         uniqueConstraints = {
-                @UniqueConstraint(columnNames = {"transaction_datetime", "store_location_id"})
+                @UniqueConstraint(columnNames = {"store_location_id", "transaction_datetime"})
         }
 )
 public class Receipt {

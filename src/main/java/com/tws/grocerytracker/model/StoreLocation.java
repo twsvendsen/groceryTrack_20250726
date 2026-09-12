@@ -13,7 +13,7 @@ import lombok.Data;
 @Data
 @Table(name = "store_location",
         uniqueConstraints = {
-                @UniqueConstraint(columnNames = {"store_name", "address"})
+                @UniqueConstraint(columnNames = {"store_name", "zipcode"})
         }
     )
 public class StoreLocation {
@@ -25,8 +25,17 @@ public class StoreLocation {
     @Column(name = "store_name")
     private String storeName;
 
-    @Column(name = "address")
-    private String address;
+    @Column(name = "street_address")
+    private String streetAddress;
+
+    @Column(name = "city")
+    private String city;
+
+    @Column(name = "state")
+    private String state;
+
+    @Column(name = "zipcode")
+    private Integer zipcode;
 
     @Column(name = "number_of_visits")
     private Integer numberOfVisits;

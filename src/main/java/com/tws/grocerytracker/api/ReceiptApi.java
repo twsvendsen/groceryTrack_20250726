@@ -5,31 +5,36 @@ import com.tws.grocerytracker.service.ReceiptService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.lang.Nullable;
-import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Pattern;
-import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("/receipt")
+@RequestMapping("/groceryTracker")
 public class ReceiptApi {
 
     private ReceiptService receiptService;
 
     @RequestMapping(
+            value = "/receipt",
             method = RequestMethod.POST
     )
     public ResponseEntity<Void> createReceipt(
-            @Pattern(regexp = "^[a-z]{3}-[A-Z]{3}$") @RequestHeader(value = "Locale", required = false) @Nullable String locale,
-            @Valid @RequestBody(required = false) @Nullable ReceiptDto receiptDto
+//            @Pattern(regexp = "^[a-z]{3}-[A-Z]{3}$") @RequestHeader(value = "Locale", required = false) String locale,
+            @Valid @RequestBody(required = false) ReceiptDto receiptDto
     ) {
-        receiptService.createReceipt(receiptDto);
-        return new ResponseEntity(HttpStatus.OK);
+        try {
+            receiptService.createReceipt(receiptDto);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (Exception ex) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
+
+    @RequestMapping(value = "/example", method = RequestMethod.GET)
+    public String handlePostRequest() {
+        return "Handled POST request";
+    }
+
 }

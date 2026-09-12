@@ -1,0 +1,9 @@
+{
+    "transactionDateTime": "2026-09-12",
+    "groceryItems": [],
+    "storeName": "Schmublix",
+    "streetAddress": "123 fake street",
+    "location": "city, st 12345",
+    "totalCost": 40.89,
+    "subtotalCost": 38.29
+}

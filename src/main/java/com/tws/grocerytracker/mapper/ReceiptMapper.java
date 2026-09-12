@@ -3,9 +3,11 @@ package com.tws.grocerytracker.mapper;
 import com.tws.grocerytracker.dto.ReceiptDto;
 import com.tws.grocerytracker.model.Receipt;
 import com.tws.grocerytracker.model.StoreLocation;
+import org.springframework.stereotype.Service;
 
 import java.time.OffsetDateTime;
 
+@Service
 public class ReceiptMapper {
 
     public Receipt mapReceiptDtoToReceipt(ReceiptDto receiptDto, StoreLocation storeLocation) {

@@ -12,7 +12,8 @@ public class ReceiptDto {
     private String transactionDateTime;
     private List<GroceryItemDto> groceryItems;
     private String storeName;
-    private String address;
+    private String streetAddress;
+    private String location;
     private BigDecimal totalCost;
     private BigDecimal subtotalCost;
 

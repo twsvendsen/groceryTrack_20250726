@@ -26,9 +26,6 @@ public class GroceryItemService {
     private GroceryItemRepository groceryItemRepository;
 
     public void buildAndMapGroceryItemList(List<GroceryItemDto> inputGroceryItems, Receipt receipt, StoreLocation storeLocation) {
-        List<GroceryItem> groceryItems = new ArrayList<>();
-        List<Commodity> existingCommodities = new ArrayList<>();
-
         if(inputGroceryItems == null || inputGroceryItems.isEmpty()) {
             // throw exception?
             return;
@@ -38,9 +35,10 @@ public class GroceryItemService {
                 .map(GroceryItemDto::getNameOfProduct)
                 .collect(Collectors.toList());
 
-        existingCommodities = commodityRepository.findAllByNameIn(products);
+        List<Commodity> existingCommodities = commodityRepository.findAllByNameIn(products);
 
         // build and save groceryItems
+        List<GroceryItem> groceryItems = new ArrayList<>();
         for(GroceryItemDto inputGroceryItem : inputGroceryItems) {
 
             // find and map commodity types

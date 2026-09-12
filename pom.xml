@@ -114,6 +114,13 @@
             <version>42.7.13</version>
             <scope>runtime</scope>
         </dependency>
+
+        <!-- address normalization -->
+        <dependency>
+            <groupId>com.smartystreets.api</groupId>
+            <artifactId>smartystreets-java-sdk</artifactId>
+            <version>7.2.0</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>

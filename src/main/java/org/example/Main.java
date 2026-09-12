@@ -2,15 +2,9 @@ package org.example;
 
 import com.tws.grocerytracker.dto.GroceryItemDto;
 import com.tws.grocerytracker.dto.ReceiptDto;
-import com.tws.grocerytracker.model.Commodity;
-import com.tws.grocerytracker.model.GroceryItem;
-import com.tws.grocerytracker.model.ItemCategory;
-import com.tws.grocerytracker.model.Receipt;
-import com.tws.grocerytracker.service.ReceiptService;
 
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
@@ -38,7 +32,7 @@ public class Main {
         ReceiptDto receiptDto = new ReceiptDto();
         receiptDto.setGroceryItems(List.of(groceryItemDto));
         receiptDto.setTransactionDateTime(OffsetDateTime.now().toString());
-        receiptDto.setAddress("123 Fake Street");
+        receiptDto.setStreetAddress("123 Fake Street");
         receiptDto.setStoreName("Babblemart");
         receiptDto.setTotalCost(new BigDecimal("21.78"));
 

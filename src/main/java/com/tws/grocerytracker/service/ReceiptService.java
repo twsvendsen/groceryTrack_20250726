@@ -18,9 +18,14 @@ public class ReceiptService {
     private StoreService storeService;
     private ReceiptRepository receiptRepository;
 
-    public void createReceipt(ReceiptDto receiptDto) {
-        StoreLocation storeLocation = storeService.getOrCreateStoreLocationByNameAndAddress(receiptDto.getStoreName(), receiptDto.getAddress());
-
+    public void createReceipt(ReceiptDto receiptDto) throws Exception {
+        StoreLocation storeLocation;
+        try {
+            storeLocation = storeService.getOrCreateStoreLocationByNameAndAddress(receiptDto.getStoreName(), receiptDto.getStreetAddress(), receiptDto.getLocation());
+        } catch (Exception ex) {
+            // TODO: handle exception
+            throw new Exception("Address failure");
+        }
         Receipt receipt = receiptMapper.mapReceiptDtoToReceipt(receiptDto, storeLocation);
         groceryItemService.buildAndMapGroceryItemList(receiptDto.getGroceryItems(), receipt, storeLocation);
 

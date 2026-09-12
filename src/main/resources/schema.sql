@@ -13,12 +13,21 @@ CREATE TABLE IF NOT EXISTS RECEIPT (
     ON UPDATE CASCADE
 );
 
+ALTER TABLE RECEIPT
+    ADD CONSTRAINT UQ_storelocation_datetime UNIQUE(store_location_id, transaction_datetime);
+
 CREATE TABLE IF NOT EXISTS STORE_LOCATION (
     id serial PRIMARY KEY,
     store_name VARCHAR(50) NOT NULL,
-    address VARCHAR(50) NOT NULL,
+    street_address VARCHAR(50) NOT NULL,
+    city VARCHAR(50) NOT NULL,
+    state VARCHAR(50) NOT NULL,
+    zipcode VARCHAR(50) NOT NULL,
     number_of_visits INT NOT NULL
 );
+
+ALTER TABLE STORE_LOCATION
+    ADD CONSTRAINT UQ_storename_zipcode UNIQUE(store_name, zipcode);
 
 CREATE TYPE item_category AS ENUM ('food', 'cookware', 'furniture', 'household item', 'other')
 

@@ -30,7 +30,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.OffsetDateTime;
 import java.util.List;
-import java.util.Locale;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(
@@ -62,7 +61,7 @@ public class Receipt_IT {
     public void testApp() {
         // given
         ReceiptDto receiptDto = new ReceiptDto();
-        receiptDto.setAddress("123 fake street, Dorb City, ZZ 99999");
+        receiptDto.setStreetAddress("123 fake street, Dorb City, ZZ 99999");
         receiptDto.setStoreName("Schmublix");
         GroceryItemDto groceryItemDto = new GroceryItemDto();
         groceryItemDto.setNameOfProduct("Gloreos");
@@ -81,7 +80,8 @@ public class Receipt_IT {
             System.out.println(e.getCause().toString());
             fail("exception thrown");
         }
-        ResponseEntity<Void> responseEntity = receiptApi.createReceipt(Locale.US.toString(), receiptDto);
+//        ResponseEntity<Void> responseEntity = receiptApi.createReceipt(Locale.US.toString(), receiptDto);
+        ResponseEntity<Void> responseEntity = receiptApi.createReceipt(receiptDto);
 
         // then
 //        responseEntity.getStatusCode() == HttpStatus.OK;
